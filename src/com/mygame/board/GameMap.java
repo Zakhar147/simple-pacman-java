@@ -19,6 +19,10 @@ public class GameMap extends JPanel implements KeyListener {
         setFocusable(true);
     }
 
+    public void load() {
+
+    }
+
     @Override
     public void keyTyped(KeyEvent e) {
 

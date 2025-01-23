@@ -9,7 +9,6 @@ import javax.swing.JFrame;
 public class App {
     public static void main(String[] args) {
         JFrame frame = new JFrame("Pacman");
-
         Game pacman = new Game();
         GameMap pacmanMap = new GameMap(pacman);
 

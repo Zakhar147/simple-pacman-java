@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Random;
 import javax.swing.*;
 
-public class Pacman extends JPanel implements ActionListener, KeyListener {
+public class TestGame extends JPanel implements ActionListener, KeyListener {
     class Block {
         int x;
         int y;
@@ -68,6 +68,18 @@ public class Pacman extends JPanel implements ActionListener, KeyListener {
             this.x = this.startX;
             this.y = this.startY;
         }
+
+        public String toString() {
+            return "Block{" +
+                    "x=" + x +
+                    ", y=" + y +
+                    ", width=" + width +
+                    ", height=" + height +
+                    ", direction=" + direction +
+                    ", velocityX=" + velicityX +
+                    ", velocityY=" + velicityY +
+                    '}';
+        }
     }
 
     private int rowCount = 21;
@@ -125,7 +137,7 @@ public class Pacman extends JPanel implements ActionListener, KeyListener {
     int lives = 3;
     boolean gameOver = false;
 
-    Pacman() {
+    TestGame() {
         setPreferredSize(new Dimension(boardWidth, boardHeight));
         setBackground(Color.black);
         addKeyListener(this);
@@ -155,6 +167,16 @@ public class Pacman extends JPanel implements ActionListener, KeyListener {
         walls = new HashSet<Block>();
         foods = new HashSet<Block>();
         ghosts = new HashSet<Block>();
+
+        for (Block wall : walls) {
+            System.out.println(walls);
+        }
+        for (Block food : foods) {
+            System.out.println(foods);
+        }
+        for (Block ghost : ghosts) {
+            System.out.println(ghosts);
+        }
 
         for (int r = 0; r < rowCount; r++) {
             for (int c = 0; c < colCount; c++) {
