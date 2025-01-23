@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Random;
 import javax.swing.*;
 
-public class PacMan extends JPanel implements ActionListener, KeyListener {
+public class Pacman extends JPanel implements ActionListener, KeyListener {
     class Block {
         int x;
         int y;
@@ -76,12 +76,12 @@ public class PacMan extends JPanel implements ActionListener, KeyListener {
     private int boardWidth = colCount * tileSize;
     private int boardHeight = rowCount * tileSize;
 
+    //imgs
     private Image wallImage;
     private Image blueGhostImage;
     private Image orangeGhostImage;
     private Image pinkGhostImage;
     private Image redGhostImage;
-
     private Image pacmanUpImage;
     private Image pacmanDownImage;
     private Image pacmanLeftImage;
@@ -125,7 +125,7 @@ public class PacMan extends JPanel implements ActionListener, KeyListener {
     int lives = 3;
     boolean gameOver = false;
 
-    PacMan() {
+    Pacman() {
         setPreferredSize(new Dimension(boardWidth, boardHeight));
         setBackground(Color.black);
         addKeyListener(this);
