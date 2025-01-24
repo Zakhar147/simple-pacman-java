@@ -1,6 +1,6 @@
 package com.mygame.main;
 
-import com.mygame.board.GameMap;
+import com.mygame.map.GameMap;
 import com.mygame.config.Config;
 import com.mygame.pacman.Game;
 
