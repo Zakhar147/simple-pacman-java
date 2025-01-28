@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Random;
 import javax.swing.*;
 
-public class PacMan extends JPanel implements ActionListener, KeyListener {
+public class TestGame extends JPanel implements ActionListener, KeyListener {
     class Block {
         int x;
         int y;
@@ -41,7 +41,6 @@ public class PacMan extends JPanel implements ActionListener, KeyListener {
                     updateVelocity();
                 }
             }
-
         }
 
         void updateVelocity() {
@@ -68,6 +67,18 @@ public class PacMan extends JPanel implements ActionListener, KeyListener {
             this.x = this.startX;
             this.y = this.startY;
         }
+
+        public String toString() {
+            return "Block{" +
+                    "x=" + x +
+                    ", y=" + y +
+                    ", width=" + width +
+                    ", height=" + height +
+                    ", direction=" + direction +
+                    ", velocityX=" + velicityX +
+                    ", velocityY=" + velicityY +
+                    '}';
+        }
     }
 
     private int rowCount = 21;
@@ -76,12 +87,12 @@ public class PacMan extends JPanel implements ActionListener, KeyListener {
     private int boardWidth = colCount * tileSize;
     private int boardHeight = rowCount * tileSize;
 
+    //imgs
     private Image wallImage;
     private Image blueGhostImage;
     private Image orangeGhostImage;
     private Image pinkGhostImage;
     private Image redGhostImage;
-
     private Image pacmanUpImage;
     private Image pacmanDownImage;
     private Image pacmanLeftImage;
@@ -125,7 +136,7 @@ public class PacMan extends JPanel implements ActionListener, KeyListener {
     int lives = 3;
     boolean gameOver = false;
 
-    PacMan() {
+    TestGame() {
         setPreferredSize(new Dimension(boardWidth, boardHeight));
         setBackground(Color.black);
         addKeyListener(this);
@@ -150,11 +161,21 @@ public class PacMan extends JPanel implements ActionListener, KeyListener {
         gameLoop = new Timer(7, this);
         gameLoop.start();
     }
-
+    ///////////////////////////////////////////////////////////
     public void loadMap() {
         walls = new HashSet<Block>();
         foods = new HashSet<Block>();
         ghosts = new HashSet<Block>();
+
+        for (Block wall : walls) {
+            System.out.println(walls);
+        }
+        for (Block food : foods) {
+            System.out.println(foods);
+        }
+        for (Block ghost : ghosts) {
+            System.out.println(ghosts);
+        }
 
         for (int r = 0; r < rowCount; r++) {
             for (int c = 0; c < colCount; c++) {
@@ -222,11 +243,11 @@ public class PacMan extends JPanel implements ActionListener, KeyListener {
         }
 
     }
+    ///////////////////////////////////////////////////////////
 
     public void move() {
         pacman.x += pacman.velicityX;
         pacman.y += pacman.velicityY;
-
         for(Block wall : walls) {
             if(collision(pacman, wall )) {
                 pacman.x -= pacman.velicityX;

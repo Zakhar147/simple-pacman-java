@@ -1,6 +1,6 @@
 import javax.swing.JFrame;
 
-public class App {
+public class TestDrive {
     public static void main(String[] args) {
         int rowCount = 21;
         int colCount = 19;
@@ -14,7 +14,7 @@ public class App {
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        PacMan pacmanGame = new PacMan();
+        TestGame pacmanGame = new TestGame();
         frame.add(pacmanGame);
         frame.pack();
         pacmanGame.requestFocus();
