@@ -5,6 +5,8 @@ import java.awt.*;
 public abstract class Entity {
     protected int x;
     protected int y;
+    protected int startX;
+    protected int startY;
     protected int width;
     protected int height;
     private Image image;
@@ -12,9 +14,23 @@ public abstract class Entity {
     Entity(int x, int y, int width, int height, Image image) {
         this.x = x;
         this.y = y;
+        this.startX = x;
+        this.startY = y;
         this.width = width;
         this.height = height;
         this.image = image;
+    }
+
+    public boolean collision(Entity a, Entity b) {
+        return  a.x < b.x + b.width &&
+                a.x + a.width > b.x &&
+                a.y < b.y + b.height &&
+                a.y + a.height > b.y;
+    }
+
+    public void reset() {
+        x = startX;
+        y = startY;
     }
 
     public int getX() {

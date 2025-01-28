@@ -248,7 +248,6 @@ public class TestGame extends JPanel implements ActionListener, KeyListener {
     public void move() {
         pacman.x += pacman.velicityX;
         pacman.y += pacman.velicityY;
-
         for(Block wall : walls) {
             if(collision(pacman, wall )) {
                 pacman.x -= pacman.velicityX;
