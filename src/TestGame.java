@@ -41,7 +41,6 @@ public class TestGame extends JPanel implements ActionListener, KeyListener {
                     updateVelocity();
                 }
             }
-
         }
 
         void updateVelocity() {
@@ -162,7 +161,7 @@ public class TestGame extends JPanel implements ActionListener, KeyListener {
         gameLoop = new Timer(7, this);
         gameLoop.start();
     }
-
+    ///////////////////////////////////////////////////////////
     public void loadMap() {
         walls = new HashSet<Block>();
         foods = new HashSet<Block>();
@@ -244,6 +243,7 @@ public class TestGame extends JPanel implements ActionListener, KeyListener {
         }
 
     }
+    ///////////////////////////////////////////////////////////
 
     public void move() {
         pacman.x += pacman.velicityX;

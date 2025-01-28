@@ -10,9 +10,8 @@ public class App {
     public static void main(String[] args) {
         JFrame frame = new JFrame("Pacman");
         Game pacman = new Game();
-        GameMap pacmanMap = new GameMap(pacman);
 
-        createAndShowGUI(frame, pacmanMap);
+        createAndShowGUI(frame, pacman.getMap());
     }
 
     private static void createAndShowGUI(JFrame frame, GameMap gameMap) {

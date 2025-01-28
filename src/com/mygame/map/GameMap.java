@@ -1,6 +1,9 @@
 package com.mygame.map;
 
 import com.mygame.config.Config;
+import com.mygame.entity.base.DynamicEntity;
+import com.mygame.entity.base.Entity;
+import com.mygame.entity.base.FixedEntity;
 import com.mygame.entity.dynamic.Ghost;
 import com.mygame.entity.dynamic.Pacman;
 import com.mygame.entity.fixed.Food;
@@ -12,11 +15,11 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-public class GameMap extends JPanel implements KeyListener {
-    private Set<Wall> walls;
-    private Set<Ghost> ghosts;
-    private Set<Food> foods;
-    private Pacman pacman;
+public class GameMap extends JPanel implements KeyListener, ActionListener {
+    private Set<FixedEntity> walls;
+    private Set<DynamicEntity> ghosts;
+    private Set<FixedEntity> foods;
+    private DynamicEntity pacman;
 
     private Map<String, Image> images;
 
@@ -55,19 +58,19 @@ public class GameMap extends JPanel implements KeyListener {
     }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        draw(g);
+        drawEntities(g);
     }
-    public void draw(Graphics g) {
+    public void drawEntities(Graphics g) {
         g.drawImage(pacman.getImage(), pacman.getX(), pacman.getY(), pacman.getWidth(), pacman.getHeight(), null);
 
-        for(Ghost ghost : ghosts) {
+        for(DynamicEntity ghost : ghosts) {
             g.drawImage(ghost.getImage(), ghost.getX(), ghost.getY(), ghost.getWidth(), ghost.getHeight(), null);
         }
-        for(Wall wall : walls) {
+        for(FixedEntity wall : walls) {
             g.drawImage(wall.getImage(), wall.getX(), wall.getY(), wall.getWidth(), wall.getHeight(), null);
         }
         g.setColor(Color.WHITE);
-        for(Food food : foods) {
+        for(FixedEntity food : foods) {
             g.fillRect(food.getX(), food.getY(), food.getWidth(), food.getHeight());
         }
     }
@@ -79,7 +82,6 @@ public class GameMap extends JPanel implements KeyListener {
     }
     private void createImages() {
         images = new HashMap<>();
-
         images.put("wall", new ImageIcon(getClass().getResource("/accets/wall.png")).getImage());
         images.put("blueGhost", new ImageIcon(getClass().getResource("/accets/blueGhost.png")).getImage());
         images.put("orangeGhost", new ImageIcon(getClass().getResource("/accets/orangeGhost.png")).getImage());
@@ -98,11 +100,45 @@ public class GameMap extends JPanel implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        if(e.getKeyCode() == KeyEvent.VK_UP) {
+            System.out.println("KEY PRESSED: " + e.getKeyChar());
+            pacman.updateDirection('U', walls);
+        }
+        else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+            System.out.println("KEY PRESSED: " + e.getKeyChar());
+            pacman.updateDirection('D', walls);
+        }
+        else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+            System.out.println("KEY PRESSED: " + e.getKeyChar());
+            pacman.updateDirection('L', walls);
 
+        }
+        else if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            System.out.println("KEY PRESSED: " + e.getKeyChar());
+            pacman.updateDirection('R', walls);
+        }
+
+        if(pacman.getDirection() == 'U') {
+            pacman.setImage(images.get("pacmanUp"));
+        }
+        else if(pacman.getDirection() == 'D') {
+            pacman.setImage(images.get("pacmanDown"));
+        }
+        else if(pacman.getDirection() == 'L') {
+            pacman.setImage(images.get("pacmanLeft"));
+        }
+        else if(pacman.getDirection() == 'R') {
+            pacman.setImage(images.get("pacmanRight"));
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
 
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        repaint();
     }
 }
