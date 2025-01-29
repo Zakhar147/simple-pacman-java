@@ -1,13 +1,10 @@
 package com.mygame.entity.dynamic;
 
 import com.mygame.entity.base.DynamicEntity;
-import com.mygame.entity.base.Entity;
 import com.mygame.entity.base.FixedEntity;
-import com.mygame.pacman.Game;
 
 import java.awt.*;
-import java.util.Random;
-import java.util.Set;
+import java.util.HashSet;
 
 public class Ghost extends DynamicEntity {
 
@@ -15,12 +12,25 @@ public class Ghost extends DynamicEntity {
         super(x, y, width, height, image, velocityX, velocityY, direction);
     }
 
-    public void reset(Set<Entity> walls) {
+    public void updateState(HashSet<FixedEntity> walls) {
+        this.setX(this.x + this.velocityX);
+        this.setY(this.y + this.velocityY);
+        for(FixedEntity wall : walls) {
+            if(wall.collision(this, wall)) {
+                this.setX(this.x - this.velocityX);
+                this.setY(this.y - this.velocityY);
+                this.setNewDirection(walls);
+                break;
+            }
+        }
+    }
+
+    public void reset(HashSet<FixedEntity> walls) {
         super.reset();
         setNewDirection(walls);
     }
 
-    public void setNewDirection(Set <Entity> walls) {
+    public void setNewDirection(HashSet <FixedEntity> walls) {
         char newDirection = this.directions[this.random.nextInt(directions.length)];
         this.updateDirection(newDirection, walls);
     }

@@ -7,7 +7,6 @@ public class Config {
     public static final int TILE_FOOD_SIZE = 8;
     public static final int BOARD_WIDTH = COLUMN_COUNT * TILE_SIZE;
     public static final int BOARD_HEIGHT = ROW_COUNT * TILE_SIZE;
-    public static final char[] DIRECTIONS = {'U', 'D', 'L', 'R'};
     public static final String[] TILE_MAP = {
             "XXXXXXXXXXXXXXXXXXX",
             "X        X        X",
