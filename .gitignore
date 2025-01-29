@@ -28,3 +28,6 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+/src/com.mygame/TestDrive.java
+/src/com.mygame/TestGame.java

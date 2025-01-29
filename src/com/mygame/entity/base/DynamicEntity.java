@@ -1,17 +1,14 @@
 package com.mygame.entity.base;
 
 import com.mygame.config.Config;
-import com.mygame.entity.dynamic.Ghost;
-import com.mygame.entity.dynamic.Pacman;
-import com.mygame.entity.fixed.Wall;
 
 import java.awt.*;
+import java.util.HashSet;
 import java.util.Random;
-import java.util.Set;
 
 public class DynamicEntity extends Entity {
-    private int velocityX;
-    private int velocityY;
+    protected int velocityX;
+    protected int velocityY;
     private char direction;
     private int baseSpeed = Config.TILE_SIZE/20;
     protected char[] directions;
@@ -26,13 +23,13 @@ public class DynamicEntity extends Entity {
         random = new Random();
     }
 
-    public void updateDirection(char direction, Set<Entity> walls) {
+    public void updateDirection(char direction, HashSet<FixedEntity> walls) {
         char prevDirection = this.direction;
         this.direction = direction;
         updateVelocity();
         this.x += this.velocityX;
         this.y += this.velocityY;
-        for(Entity wall : walls) {
+        for(FixedEntity wall : walls) {
             if(collision(this, wall)) {
                 this.x -=  this.velocityX;
                 this.y -=  this.velocityY;

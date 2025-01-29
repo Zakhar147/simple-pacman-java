@@ -3,11 +3,9 @@ package com.mygame.pacman;
 import com.mygame.map.GameMap;
 
 import javax.swing.*;
-import java.util.Random;
 
 public class Game {
     private Timer gameLoop;
-    private Random rand = new Random();
     public static int score;
     public static int lives;
     public static boolean isGameOver;
@@ -18,7 +16,7 @@ public class Game {
         score = 0;
         lives = 3;
         isGameOver = false;
-        this.map = new GameMap(gameLoop);
+        this.map = new GameMap(this);
         gameLoop = new Timer(10, this.map);
 
         startGame();
@@ -36,5 +34,4 @@ public class Game {
     public Timer getGameLoop() {
         return gameLoop;
     }
-
 }
